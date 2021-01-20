@@ -248,7 +248,7 @@ static void zclApp_ReadSensors(void) {
       }
       sensor_state_not_avaliable = current_co2_sensor_state == ABC_NOT_AVALIABLE;
       current_co2_sensor_state = sensor_state_not_avaliable ? ABC_DISABLED: current_co2_sensor_state;
-      zclApp_Sensors.CO2_PPM = ppm;
+      zclApp_Sensors.CO2_PPM = (double)ppm / 1000000.0;
       zclApp_Sensors.CO2 = (double)ppm / 1000000.0;
       bdb_RepChangedAttrValue(zclApp_FirstEP.EndPoint, ZCL_CO2, ATTRID_CO2_MEASURED_VALUE);
       zclApp_SetupABC(sensor_state_not_avaliable);
